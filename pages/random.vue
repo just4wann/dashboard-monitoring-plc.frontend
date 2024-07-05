@@ -3,8 +3,8 @@
 </script>
 
 <template>
-    <div class="mx-auto mt-10">
-        Welcome 
+    <div>
+        random
     </div>
 </template>
 
