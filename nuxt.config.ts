@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true
   },
-  modules: ["@nuxt/fonts", "@nuxt/ui"],
+  modules: ["@nuxt/fonts", "@nuxt/ui", "@nuxt/image"],
   css: ['~/assets/main.css'],
   compatibilityDate: '2024-07-05'
 })
