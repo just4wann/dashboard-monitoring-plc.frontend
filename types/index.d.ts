@@ -8,3 +8,8 @@ export interface MachineStatus {
     statusMach: string;
     colorStatus: string;
 }
+
+export type PieChartDataConfig = {
+    label: string;
+    value: number;
+} 
