@@ -65,11 +65,12 @@ const items = [
             </section>
         </section>
         <UDivider label="Line Information" :ui="{ label: 'text-xs tracking-widest text-primary font-semibold', border: { base: 'flex border-primary-200 dark:border-primary-800'}}"></UDivider>
-        <section class="flex justify-center items-center mt-10">
-          <UBadge v-if="isClickM1">Auto Assembling M-01</UBadge>
+        <section class="flex justify-center items-center mt-5">
+          <PieChart :data="[90, 10]"/>
+          <!-- <UBadge v-if="isClickM1">Auto Assembling M-01</UBadge>
           <UBadge v-if="isClickM2">Auto Assembling M-02</UBadge>
           <UBadge v-if="isClickM3">Auto Assembling M-03</UBadge>
-          <UBadge v-if="isClickM4">Auto Assembling M-04</UBadge>
+          <UBadge v-if="isClickM4">Auto Assembling M-04</UBadge> -->
         </section>
     </UContainer>
 </template>
