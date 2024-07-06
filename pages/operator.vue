@@ -6,7 +6,7 @@ definePageMeta({
 
 <template>
     <div>
-        operator
+        
     </div>
 </template>
 
