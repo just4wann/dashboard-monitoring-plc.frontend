@@ -22,13 +22,13 @@ const y = (d: DataRecords) => d.y
 </script>
 
 <template>
-  <UContainer class="flex flex-col justify-start w-full gap-4 font-light">
+  <UContainer class="flex flex-col justify-start w-full gap-7 font-light">
     <h1 class="text-xl text-center">Visualization Machines Production</h1>
     <UDivider label="Charts" :ui="{ label: 'text-xs tracking-widest text-primary font-semibold', border: { base: 'flex border-primary-200 dark:border-primary-800'}}"></UDivider>
     <VisXYContainer
       :data="data"
       :padding="{ top: 20 }"
-      class="h-56 mt-14"
+      class="h-56 mt-6"
     >
       <VisLine
         :x="x"

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <UCard class="w-80 h-screen">
+  <UCard class="w-80 h-screen" :ui="{ring: 'ring-0'}">
     <main class="flex flex-col justify-start items-start gap-10 w-full py-4 px-6">
       <h1 class="font-semibold text-2xl text-center">PLC<span class="text-red-600">Dash</span></h1>
       <ul class="flex flex-col gap-5 justify-center items-start w-full tracking-widest text-[13px]">
