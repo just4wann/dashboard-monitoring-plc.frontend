@@ -67,9 +67,22 @@ const items = [
       </section>
     </section>
     <UDivider label="Line Information" :ui="{ label: 'text-xs tracking-widest text-primary font-semibold', border: { base: 'flex border-primary-200 dark:border-primary-800' } }"></UDivider>
-    <section class="flex flex-col gap-3 justify-center items-start mt-6">
-      <PieChart :data="[90, 10]" />
-      <Pressure />
+    <section class="flex gap-3 justify-center items-start mt-6 flex-wrap">
+      <section class="flex flex-col gap-3">
+        <PieChart :data="[90, 10]" />
+        <ProductType />
+      </section>
+      <section class="flex flex-col justify-center gap-3">
+        <Pressure />
+        <OperationTime />
+        <MachineStatus />
+      </section>
+      <section class="flex flex-col justify-center gap-3">
+        <Temperature />
+        <TroubleList />
+      </section>
+      
+      
       <!-- <UBadge v-if="isClickM1">Auto Assembling M-01</UBadge>
           <UBadge v-if="isClickM2">Auto Assembling M-02</UBadge>
           <UBadge v-if="isClickM3">Auto Assembling M-03</UBadge>
