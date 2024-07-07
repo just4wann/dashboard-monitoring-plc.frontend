@@ -7,6 +7,9 @@ export default defineNuxtConfig({
       mode: 'out-in'
     }
   },
+  ui: {
+    icons: ['carbon']
+  },
   typescript: {
     typeCheck: true
   },
