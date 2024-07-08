@@ -7,7 +7,7 @@
       <section class="flex justify-center items-center gap-6">
         <section class="flex flex-col justify-center items-center gap-3">
           <section class="flex flex-col justify-center items-center gap-3">
-            <p class="tracking-wider text-sm opacity-70">Running Production</p>
+            <p class="tracking-wider text-sm opacity-80">Running Production</p>
             <section class="flex justify-center items-center gap-3">
               <section class="flex justify-center items-center gap-1">
                 <UBadge variant="soft">100</UBadge>
@@ -20,7 +20,7 @@
             </section>
           </section>
           <section class="flex flex-col justify-center items-center gap-3">
-            <p class="tracking-wider text-sm opacity-70">Downtime Production</p>
+            <p class="tracking-wider text-sm opacity-80">Downtime Production</p>
             <section class="flex justify-center items-center gap-3">
               <section class="flex justify-center items-center gap-1">
                 <UBadge variant="soft" color="red">100</UBadge>

@@ -18,21 +18,21 @@ const color = (d: number, i: number) => ['green', 'red'][i];
       </VisSingleContainer>
       <ul class="flex flex-col justify-center items-start gap-2 text-sm tracking-wider -mt-5">
         <li class="flex justify-center items-center gap-1">
-          <p class="opacity-70">Total Product :</p>
+          <p class="opacity-80">Total Product :</p>
           <section class="flex justify-center items-center gap-0.5">
             <UBadge variant="soft" size="xs">100</UBadge>
             <UKbd>pcs</UKbd>
           </section>
         </li>
         <li class="flex justify-center items-center gap-1">
-          <p class="opacity-70">OK Product :</p>
+          <p class="opacity-80">OK Product :</p>
           <section class="flex justify-center items-center gap-0.5">
             <UBadge variant="soft" size="xs">90</UBadge>
             <UKbd>pcs</UKbd>
           </section>
         </li>
         <li class="flex justify-center items-center gap-1">
-          <p class="opacity-70">NG Product :</p>
+          <p class="opacity-80">NG Product :</p>
           <section class="flex justify-center items-center gap-0.5">
             <UBadge variant="soft" size="xs" color="red">10</UBadge>
             <UKbd>pcs</UKbd>
