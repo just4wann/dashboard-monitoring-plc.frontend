@@ -1,9 +1,55 @@
 <script setup lang="ts">
-import { VisSingleContainer, VisDonut } from '@unovis/vue';
+import { VisSingleContainer, VisDonut, VisAnnotations, VisBulletLegend } from '@unovis/vue';
+import type { AnnotationItem } from '@unovis/ts';
 
 defineProps<{
   data: number[];
 }>();
+
+const itemAnnotations: AnnotationItem[] = [
+  {
+    content: [
+      {
+        text: 'Product NG',
+        color: 'rgb(255, 255, 255, .5)',
+        fontSize: 12,
+      },
+    ],
+    x: -1,
+    y: 40,
+    subject: { x: 100, y: 85, padding: 0, radius: 3, fillColor: 'black' },
+  },
+  {
+    content: [
+      {
+        text: 'Product OK',
+        color: 'rgb(255, 255, 255, .5)',
+        fontSize: 12,
+      },
+    ],
+    x: 250,
+    y: 240,
+    textAlign: 'right',
+    subject: {
+      x: 160,
+      y: 200,
+      padding: 0,
+      radius: 3,
+      fillColor: 'black',
+    },
+  },
+];
+
+const labels = [
+  {
+    name: 'Product OK',
+    color: 'green'
+  },
+  {
+    name: 'Product NG',
+    color: 'red'
+  }
+]
 
 const value = (d: number) => d;
 const color = (d: number, i: number) => ['green', 'red'][i];
@@ -15,6 +61,8 @@ const color = (d: number, i: number) => ['green', 'red'][i];
       <h1 class="tracking-widest">Quantity Production</h1>
       <VisSingleContainer :data="data" class="-mt-6">
         <VisDonut :value="value" :arcWidth="100" :radius="90" :color="color" :cornerRadius="7" :showBackground="false" />
+        <VisAnnotations :items="itemAnnotations" />
+        <!-- <VisBulletLegend :items="labels"/> -->
       </VisSingleContainer>
       <ul class="flex flex-col justify-center items-start gap-2 text-sm tracking-wider -mt-5">
         <li class="flex justify-center items-center gap-1">

@@ -69,7 +69,7 @@ const items = [
     <UDivider label="Line Information" :ui="{ label: 'text-xs tracking-widest text-primary font-semibold', border: { base: 'flex border-primary-200 dark:border-primary-800' } }"></UDivider>
     <section class="flex gap-3 justify-center items-start mt-6 flex-wrap">
       <section class="flex flex-col gap-3">
-        <PieChart :data="[90, 10]" />
+        <PieChart :data="[90, 50]" />
         <ProductType />
       </section>
       <section class="flex flex-col justify-center gap-3">
