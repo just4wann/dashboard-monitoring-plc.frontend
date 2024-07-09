@@ -21,7 +21,7 @@
         </NuxtLink>
         <NuxtLink to="/chart">
           <li class="flex justify-center items-center gap-3">
-            <UIcon name="i-heroicons-chart-pie-16-solid" class="text-xl" />
+            <UIcon name="i-carbon-chart-line-smooth" class="text-xl" />
             <p>Charts</p>  
           </li>
         </NuxtLink>
