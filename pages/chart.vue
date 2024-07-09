@@ -18,17 +18,32 @@ const now = date.toLocaleString()
 console.log(typeof now)
 
 const data = ref<DataRecords[]>([
-  { x: 'Monday', y: 3 },
-  { x: 'Tuesday', y: 1.6 },
-  { x: 'Wednesday', y: 1.4 },
-  { x: 'Thursday', y: 3 },
+  { x: '08.00', y: 1 },
+  { x: '08.01', y: 2 },
+  { x: '08.02', y: 3 },
+  { x: '08.03', y: 2 },
+  { x: '08.04', y: 4 },
+  { x: '08.05', y: 5 },
+  { x: '08.06', y: 1 },
+  { x: '08.07', y: 3 },
+  { x: '08.00', y: 2 },
+  { x: '08.01', y: 4 },
+  { x: '08.02', y: 5 },
+  { x: '08.03', y: 1 },
+  { x: '08.04', y: 3 },
+  { x: '08.05', y: 5 },
+  { x: '08.06', y: 4 },
+  { x: '08.07', y: 3 },
 ]);
+
+const sliceData = data.value.slice(data.value.length - 5, data.value.length);
+console.log(sliceData);
 
 const x = (_: DataRecords, i: number) => i;
 const y = (d: DataRecords) => d.y;
 
 const xTicks = (i: number): string => {
-  return data.value[i].x;
+  return sliceData[i].x;
 }
 
 const range = ref<Range>({ start: sub(new Date(), { days: 1 }), end: new Date() })
@@ -49,10 +64,10 @@ const period = ref<Period>('daily')
       <VisCrosshair color="rgb(var(--color-primary-DEFAULT))" :x="x" />
       <VisTooltip />
     </VisXYContainer> -->
-    <VisXYContainer :data="data" :margin="{ left: 0, right: 200 }">
+    <VisXYContainer :data="sliceData" :margin="{ left: 0, right: 30 }">
       <VisLine :x="x" :y="y" :lineWidth="3"/>
-      <VisAxis type="x" :x="x" :tickFormat="xTicks"/>
-      <VisAxis type="y" :y="y"/>
+      <VisAxis type="x" :x="x" :tickFormat="xTicks" :tickTextAngle="15" :gridLine="false"/>
+      <VisAxis type="y" :y="y" :gridLine="false"/>
       <VisCrosshair />
       <VisTooltip/>
     </VisXYContainer>
