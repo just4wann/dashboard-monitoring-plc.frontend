@@ -20,6 +20,6 @@ export interface Range {
     end: Date;
 }
 export type DataRecord = {
-    date: Date;
+    timestamp: string;
     value: number;
 }

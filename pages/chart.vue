@@ -1,71 +1,46 @@
 <script setup lang="ts">
-import { VisXYContainer, VisLine, VisAxis, VisArea, VisTooltip, VisCrosshair, VisScatter, VisBulletLegend } from '@unovis/vue';
-import { sub } from 'date-fns';
-import type { Period, Range } from '~/types';
+import type { DataRecord } from '~/types'
 
 definePageMeta({
   layout: 'chart',
 });
 
-type DataRecords = {
-  x: string;
-  y: number;
-  y1: number;
-  y2: number;
-};
-
-const date = Date.now();
-const now = date.toLocaleString();
-
-const data = ref<DataRecords[]>([
-  { x: '08.00', y: 1, y1: 2, y2: 3 },
-  { x: '08.01', y: 2, y1: 1, y2: 4 },
-  { x: '08.02', y: 3, y1: 4, y2: 2 },
-  { x: '08.03', y: 2, y1: 1, y2: 5 },
-  { x: '08.04', y: 4, y1: 1, y2: 3 },
-  { x: '08.05', y: 5, y1: 2, y2: 4 },
-  { x: '08.06', y: 1, y1: 4, y2: 2 },
-  { x: '08.07', y: 3, y1: 1, y2: 5 },
-  { x: '08.08', y: 2, y1: 1, y2: 3 },
-  { x: '08.09', y: 4, y1: 3, y2: 1 },
-  { x: '08.10', y: 5, y1: 2, y2: 3 },
-  { x: '08.11', y: 1, y1: 4, y2: 5 },
-  { x: '08.12', y: 3, y1: 1, y2: 4 },
-  { x: '08.13', y: 5, y1: 2, y2: 3 },
-  { x: '08.14', y: 4, y1: 5, y2: 3 },
-  { x: '08.15', y: 3, y1: 2, y2: 5 },
+const data = ref<DataRecord[]>([
+  { timestamp: '08.00', value: 100 },
+  { timestamp: '08.01', value: 90 },
+  { timestamp: '08.02', value: 100 },
+  { timestamp: '08.03', value: 100 },
+  { timestamp: '08.04', value: 100 },
+  // { timestamp: '08.05', value: 100 },
+  // { timestamp: '08.06', value: 90 },
+  // { timestamp: '08.07', value: 80 },
+  // { timestamp: '08.08', value: 85 },
+  // { timestamp: '08.09', value: 80 },
+  // { timestamp: '08.10', value: 78 },
+  // { timestamp: '08.11', value: 75 },
+  // { timestamp: '08.12', value: 76 },
+  // { timestamp: '08.13', value: 79 },
+  // { timestamp: '08.14', value: 84 },
+  // { timestamp: '08.15', value: 88 },
 ]);
 
-const labels = ['Temperature 1', 'Temperature 2', 'Temperature 3'];
-const items = labels.map(item => ({ name: item }));
+const dataBig = (): DataRecord[] => {
+  if (data.value.length > 5) {
+    data.value = data.value.slice(data.value.length - 5, data.value.length);
+  }
+  else if (data.value.length < 5) {
+    data.value = data.value;
+  }
+  return data.value;
+}
 
-const sliceData = data.value.slice();
-
-const x = (_: DataRecords, i: number) => i;
-const y = [(d: DataRecords) => d.y, (d: DataRecords) => d.y1, (d: DataRecords) => d.y2];
-
-const xTicks = (i: number): string => {
-  return sliceData[i].x;
-};
-
-const range = ref<Range>({ start: sub(new Date(), { days: 1 }), end: new Date() });
-const period = ref<Period>('daily');
 </script>
 
 <template>
   <UContainer class="flex flex-col justify-start w-full gap-7 font-light">
     <h1 class="text-xl text-center">Visualization Machines Production</h1>
     <UDivider label="Charts" :ui="{ label: 'text-xs tracking-widest text-primary font-semibold', border: { base: 'flex border-primary-200 dark:border-primary-800' } }"></UDivider>
-    <VisXYContainer :data="sliceData" :margin="{ left: 0, right: 30 }">
-      <VisLine :x="x" :y="y" :lineWidth="2" />
-      <VisScatter :x="x" :y="y" />
-      <VisAxis type="x" :x="x" :tickFormat="xTicks" :tickTextAngle="15" :gridLine="false" label="Timestamp" :labelMargin="15" :tickLine="false" :numTicks="20" />
-      <VisAxis type="y" :y="y" :gridLine="false" label="Efficiency (%)" :labelMargin="15" :tickLine="false" />
-      <VisCrosshair />
-      <VisTooltip />
-    </VisXYContainer>
-    <VisBulletLegend :items="items" />
-    <!-- <ChartEfficiency :period="period" :range="range"/> -->
+    <ChartEfficiency :data="dataBig()"/>
   </UContainer>
 </template>
 
