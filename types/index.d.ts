@@ -9,17 +9,21 @@ export interface MachineStatus {
     colorStatus: string;
 }
 
-export type PieChartDataConfig = {
-    label: string;
-    value: number;
-} 
-
-export type Period = 'daily' | 'weekly' | 'monthly';
-export interface Range {
-    start: Date;
-    end: Date;
-}
-export type DataRecord = {
+interface TimestampDataRecord {
     timestamp: string;
+}
+
+export interface EfficiencyDataRecord extends TimestampDataRecord {
     value: number;
+}
+
+export interface PressureDataRecord extends TimestampDataRecord {
+    airPress: number;
+    vacuumPress: number;
+}
+
+export interface TemperatureDataRecord extends TimestampDataRecord {
+    ovenTemp: number;
+    roomTemp: number;
+    heaterTemp: number;
 }
