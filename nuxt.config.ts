@@ -4,16 +4,16 @@ export default defineNuxtConfig({
   app: {
     layoutTransition: {
       name: 'page',
-      mode: 'out-in'
-    }
+      mode: 'out-in',
+    },
   },
   ui: {
-    icons: ['carbon']
+    icons: ['carbon'],
   },
   typescript: {
-    typeCheck: true
+    typeCheck: true,
   },
-  modules: ["@nuxt/fonts", "@nuxt/ui", "@nuxt/image"],
+  modules: ['@nuxt/fonts', '@nuxt/ui', '@nuxt/image'],
   css: ['~/assets/main.css'],
-  compatibilityDate: '2024-07-05'
-})
+  compatibilityDate: '2024-07-05',
+});
