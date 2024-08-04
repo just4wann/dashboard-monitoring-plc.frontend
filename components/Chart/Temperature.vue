@@ -35,7 +35,7 @@ const items = [
   }
 ];
 
-const template = (d: TemperatureDataRecord) => `<span>Oven : ${d.ovenTemp} C<br/> Room : ${d.roomTemp} C<br/> Heater : ${d.heaterTemp} C</span>`;
+const template = (d: TemperatureDataRecord) => `<p class="text-xs">Oven : ${d.ovenTemp} °C<br/> Room : ${d.roomTemp} °C<br/> Heater : ${d.heaterTemp} °C</p>`;
 </script>
 
 <template>

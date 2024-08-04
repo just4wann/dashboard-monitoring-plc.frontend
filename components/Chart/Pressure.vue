@@ -21,14 +21,14 @@ const xTickLabelLength = (): number => {
 
 const items = [
   {
-    name: 'Air Pressure',
+    name: 'Air Pressure (Mpa)',
   },
   {
-    name: 'Vacuum Pressure',
+    name: 'Vacuum Pressure (Kpa)',
   },
 ];
 
-const template = (d: PressureDataRecord) => `<span>Air Pressure : ${d.airPress} Kpa<br/> Vacuum Pressure : ${d.vacuumPress} Kpa</span>`;
+const template = (d: PressureDataRecord) => `<p class="text-xs">Air Pressure : ${d.airPress} Kpa<br/> Vacuum Pressure : ${d.vacuumPress} Kpa</p>`;
 </script>
 
 <template>
@@ -38,7 +38,7 @@ const template = (d: PressureDataRecord) => `<span>Air Pressure : ${d.airPress} 
       <VisXYContainer :data="data" :margin="{ right: 15 }" :height="180">
         <VisLine :x="x" :y="y" :lineWidth="2" />
         <VisAxis type="x" :x="x" :tickFormat="xTicksLabel" :tickTextAngle="15" :gridLine="false" label="Timestamp" :labelMargin="15" :tickLine="false" :numTicks="xTickLabelLength()" />
-        <VisAxis type="y" :y="y" :gridLine="false" label="Kpa" :labelMargin="15" :tickLine="false" />
+        <VisAxis type="y" :y="y" :gridLine="false" label="Mpa / Kpa" :labelMargin="15" :tickLine="false" />
         <VisCrosshair color="rgb(77, 140, 253)" :template="template"/>
         <VisTooltip />
       </VisXYContainer>

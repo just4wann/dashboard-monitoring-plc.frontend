@@ -15,8 +15,8 @@ body {
       --vis-axis-tick-color: rgb(var(--color-gray-800));
       --vis-axis-tick-label-color: rgb(var(--color-gray-500));
   
-      --vis-tooltip-background-color: rgb(18, 18, 18);
-      --vis-tooltip-border-color: rgb(18, 18, 18);
+      --vis-tooltip-background-color: rgb(23, 23, 23);
+      --vis-tooltip-border-color: rgb(37, 37, 37);
       --vis-tooltip-text-color: #fff;
     }
   }

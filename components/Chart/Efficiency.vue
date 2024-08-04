@@ -18,14 +18,14 @@ const xTickLabelLength = (): number => {
   return props.data.length >= 15 ? 15 : props.data.length - 1
 };
 
-const template = (d: EfficiencyDataRecord) => `${d.value} %`;
+const template = (d: EfficiencyDataRecord) => `<p class="text-xs">${d.value} %</p>`;
 </script>
 
 <template>
   <UCard class="w-full">
     <main class="flex flex-col justify-center items-start gap-5">
       <UBadge variant="soft" size="sm" class="font-semibold tracking-wider">Efficiency</UBadge>
-      <VisXYContainer :data="data" :margin="{ right: 10 }" :height="200">
+      <VisXYContainer :data="data" :margin="{ right: 15 }" :height="200">
         <VisLine :x="x" :y="y" :lineWidth="2" />
         <VisAxis type="x" :x="x" :tickFormat="xTicksLabel" :tickTextAngle="15" :gridLine="false" label="Timestamp" :labelMargin="15" :tickLine="false" :numTicks="xTickLabelLength()" />
         <VisAxis type="y" :y="y" :gridLine="false" label="Efficiency (%)" :labelMargin="15" :tickLine="false" />

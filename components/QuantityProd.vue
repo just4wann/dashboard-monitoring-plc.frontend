@@ -68,7 +68,7 @@ const color = (d: number, i: number) => ['green', 'red'][i];
         <li class="flex justify-center items-center gap-1">
           <p class="opacity-80">Total Product :</p>
           <section class="flex justify-center items-center gap-0.5">
-            <UBadge variant="soft" size="xs">{{ data.reduce((acc, curr) => acc + curr) }}</UBadge>
+            <UBadge variant="soft" size="xs">{{ data.reduce((acc: number, curr: number): number => acc + curr) }}</UBadge>
             <UKbd>pcs</UKbd>
           </section>
         </li>
