@@ -1,36 +1,38 @@
 <script setup lang="ts">
-import { dataEfficiency, dataPressure, dataTemperature } from '~/store';
+import { useStore } from '~/store';
 import type { EfficiencyDataRecord, PressureDataRecord, TemperatureDataRecord } from '~/types';
 
 definePageMeta({
   layout: 'chart',
 });
 
+const store = useStore()
+
 const datasPressure = (): PressureDataRecord[] => {
-  if (dataPressure.value.length > 5) {
-    dataPressure.value = dataPressure.value.slice(dataPressure.value.length - 5, dataPressure.value.length);
-  } else if (dataPressure.value.length < 5) {
-    dataPressure.value = dataPressure.value;
+  if (store.dataPressure.length > 5) {
+    store.dataPressure = store.dataPressure.slice(store.dataPressure.length - 5, store.dataPressure.length);
+  } else if (store.dataPressure.length < 5) {
+    store.dataPressure = store.dataPressure;
   }
-  return dataPressure.value;
+  return store.dataPressure;
 };
 
 const datasEfficiency = (): EfficiencyDataRecord[] => {
-  if (dataEfficiency.value.length > 15) {
-    dataEfficiency.value = dataEfficiency.value.slice(dataEfficiency.value.length - 15, dataEfficiency.value.length);
-  } else if (dataEfficiency.value.length < 15) {
-    dataEfficiency.value = dataEfficiency.value;
+  if (store.dataEfficiency.length > 15) {
+    store.dataEfficiency = store.dataEfficiency.slice(store.dataEfficiency.length - 15, store.dataEfficiency.length);
+  } else if (store.dataEfficiency.length < 15) {
+    store.dataEfficiency = store.dataEfficiency;
   }
-  return dataEfficiency.value;
+  return store.dataEfficiency;
 };
 
 const datasTemperature = (): TemperatureDataRecord[] => {
-  if (dataTemperature.value.length > 5) {
-    dataTemperature.value = dataTemperature.value.slice(dataTemperature.value.length - 5, dataTemperature.value.length);
-  } else if (dataTemperature.value.length < 5) {
-    dataTemperature.value = dataTemperature.value;
+  if (store.dataTemperature.length > 5) {
+    store.dataTemperature = store.dataTemperature.slice(store.dataTemperature.length - 5, store.dataTemperature.length);
+  } else if (store.dataTemperature.length < 5) {
+    store.dataTemperature = store.dataTemperature;
   }
-  return dataTemperature.value;
+  return store.dataTemperature;
 };
 </script>
 
