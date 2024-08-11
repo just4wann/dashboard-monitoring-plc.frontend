@@ -1,3 +1,6 @@
+<script setup lang="ts">
+useWebSockets();
+</script>
 <template>
   <main class="flex">
     <Sidebar />
