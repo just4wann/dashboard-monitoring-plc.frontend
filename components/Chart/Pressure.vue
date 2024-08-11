@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VisXYContainer, VisLine, VisAxis, VisCrosshair, VisTooltip, VisBulletLegend } from '@unovis/vue';
+import { VisXYContainer, VisLine, VisAxis, VisCrosshair, VisTooltip, VisBulletLegend, VisScatter } from '@unovis/vue';
 import type { PressureDataRecord } from '~/types';
 
 const props = defineProps<{
@@ -28,7 +28,7 @@ const items = [
   },
 ];
 
-const template = (d: PressureDataRecord) => `<p class="text-xs">Air Pressure : ${d.airPress} Kpa<br/> Vacuum Pressure : ${d.vacuumPress} Kpa</p>`;
+const template = (d: PressureDataRecord) => `<p class="text-xs">Air Pressure : ${d.airPress} Mpa<br/> Vacuum Pressure : ${d.vacuumPress} Kpa</p>`;
 </script>
 
 <template>
@@ -40,6 +40,7 @@ const template = (d: PressureDataRecord) => `<p class="text-xs">Air Pressure : $
         <VisAxis type="x" :x="x" :tickFormat="xTicksLabel" :tickTextAngle="15" :gridLine="false" label="Timestamp" :labelMargin="15" :tickLine="false" :numTicks="xTickLabelLength()" />
         <VisAxis type="y" :y="y" :gridLine="false" label="Mpa / Kpa" :labelMargin="15" :tickLine="false" />
         <VisCrosshair color="rgb(77, 140, 253)" :template="template"/>
+        <VisScatter :x="x" :y="y" :size="7"/>
         <VisTooltip />
       </VisXYContainer>
       <VisBulletLegend :items="items" />

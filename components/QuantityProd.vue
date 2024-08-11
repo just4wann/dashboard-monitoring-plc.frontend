@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { VisSingleContainer, VisDonut, VisAnnotations, VisBulletLegend } from '@unovis/vue';
 import type { AnnotationItem } from '@unovis/ts';
+import type { ProductionInfoDataRecord } from '~/types';
 
 defineProps<{
   data: number[];

@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { TemperatureDataRecord } from '~/types';
+
+defineProps<{
+  data: TemperatureDataRecord[]
+}>()
+</script>
 
 <template>
   <UCard>
@@ -8,23 +14,23 @@
         <section class="flex justify-center items-center gap-10">
           <section class="flex flex-col justify-center items-center gap-3">
             <section class="flex flex-col justify-center items-center gap-2">
-              <p class="text-sm tracking-wider opacity-80">Temperature 1</p>
+              <p class="text-sm tracking-wider opacity-80">Oven Temperature</p>
               <section class="flex justify-center items-center gap-1">
-                <UBadge variant="soft">28</UBadge>
+                <UBadge variant="soft">{{ data[data.length - 1].ovenTemp }}</UBadge>
                 <UKbd size="md">°C</UKbd>
               </section>
             </section>
             <section class="flex flex-col justify-center items-center gap-2">
-              <p class="text-sm tracking-wider opacity-80">Temperature 2</p>
+              <p class="text-sm tracking-wider opacity-80">Room Temperature</p>
               <section class="flex justify-center items-center gap-1">
-                <UBadge variant="soft">19</UBadge>
+                <UBadge variant="soft">{{ data[data.length - 1].roomTemp }}</UBadge>
                 <UKbd size="md">°C</UKbd>
               </section>
             </section>
             <section class="flex flex-col justify-center items-center gap-2">
-              <p class="text-sm tracking-wider opacity-80">Temperature 3</p>
+              <p class="text-sm tracking-wider opacity-80">Heater Temperature</p>
               <section class="flex justify-center items-center gap-1">
-                <UBadge variant="soft" color="red">50</UBadge>
+                <UBadge variant="soft" color="red">{{ data[data.length - 1].heaterTemp }}</UBadge>
                 <UKbd size="md">°C</UKbd>
               </section>
             </section>

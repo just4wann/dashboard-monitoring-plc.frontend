@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VisXYContainer, VisLine, VisAxis, VisCrosshair, VisTooltip, VisBulletLegend } from '@unovis/vue';
+import { VisXYContainer, VisLine, VisAxis, VisCrosshair, VisTooltip, VisBulletLegend, VisScatter } from '@unovis/vue';
 import type { TemperatureDataRecord } from '~/types';
 
 const props = defineProps<{
@@ -47,6 +47,7 @@ const template = (d: TemperatureDataRecord) => `<p class="text-xs">Oven : ${d.ov
         <VisAxis type="x" :x="x" :tickFormat="xTicksLabel" :tickTextAngle="15" :gridLine="false" label="Timestamp" :labelMargin="15" :tickLine="false" :numTicks="xTickLabelLength()" />
         <VisAxis type="y" :y="y" :gridLine="false" label="Celcius" :labelMargin="15" :tickLine="false" />
         <VisCrosshair color="rgb(77, 140, 253)" :template="template"/>
+        <VisScatter :x="x" :y="y" :size="7"/>
         <VisTooltip />
       </VisXYContainer>
       <VisBulletLegend :items="items" />

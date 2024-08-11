@@ -1,37 +1,43 @@
 <script setup lang="ts">
-import type { MachineStatus } from '~/types';
+import { useStore } from '~/store';
 
-const machStatus: MachineStatus[] = [
+const store = useStore()    
+const badgeColorStatus = ref<string>('');
+const colorStatus = [
   {
-    noMach: 1,
-    statusMach: 'RUNNING',
-    colorStatus: 'primary',
+    status: 'RUNNING',
+    color: 'primary'
   },
   {
-    noMach: 2,
-    statusMach: 'WAITING',
-    colorStatus: 'yellow',
+    status: 'WAITING',
+    color: 'orange'
   },
   {
-    noMach: 3,
-    statusMach: 'TROUBLE',
-    colorStatus: 'red',
+    status: 'TROUBLE',
+    color: 'red'
   },
   {
-    noMach: 4,
-    statusMach: 'OFF',
-    colorStatus: 'gray',
+    status: 'OFF',
+    color: 'gray'
   },
-];
+]
+
+const colorStatusCondition = (): string => {
+  let statuses = colorStatus.find(status => status.status === store.dataMachine[0].status);
+  if(statuses) {
+    return badgeColorStatus.value = statuses.color;
+  }
+  return badgeColorStatus.value;
+}
 </script>
 
 <template>
     <main class="flex justify-center items-center flex-wrap gap-10 mt-6">
-      <UCard class="w-96" v-for="{ noMach, statusMach, colorStatus } in machStatus">
+      <UCard class="w-96">
         <section class="flex flex-col justify-center items-center gap-3">
           <section class="text-center flex flex-col gap-1 justify-center items-center">
-            <h1 class="tracking-widest">Auto Assembling M0{{ noMach }}</h1>
-            <UBadge :color="colorStatus" variant="soft" class="font-bold tracking-widest">{{ statusMach }}</UBadge>
+            <h1 class="tracking-widest">Auto Assembling M0</h1>
+            <UBadge :color="colorStatusCondition()" variant="soft" class="font-bold tracking-widest">{{ store.dataMachine[0].status }}</UBadge>
           </section>
 
           <section class="flex justify-around items-center tracking-wider w-full text-xs">
@@ -39,26 +45,26 @@ const machStatus: MachineStatus[] = [
               <li class="flex justify-center items-center gap-1">
                 <p>OK Product :</p>
                 <section class="flex justify-center items-center gap-0.5">
-                  <UBadge variant="soft" size="xs">90</UBadge>
+                  <UBadge variant="soft" size="xs">{{ store.dataProduction[0].ok }}</UBadge>
                   <UKbd>pcs</UKbd>
                 </section>
               </li>
               <li class="flex justify-center items-center gap-1">
                 <p>NG Product :</p>
                 <section class="flex justify-center items-center gap-0.5">
-                  <UBadge variant="soft" color="red" size="xs">10</UBadge>
+                  <UBadge variant="soft" color="red" size="xs">{{ store.dataProduction[0].ng }}</UBadge>
                   <UKbd>pcs</UKbd>
                 </section>
               </li>
-              <li>Efficiency : <UBadge color="primary" variant="soft" size="xs">56%</UBadge></li>
-              <li>Type : <UBadge color="blue" variant="soft" size="xs">CR2477</UBadge></li>
+              <li>Efficiency : <UBadge color="primary" variant="soft" size="xs">{{ store.dataEfficiency[store.dataEfficiency.length - 1].value }}%</UBadge></li>
+              <li>Type : <UBadge color="blue" variant="soft" size="xs">{{ store.dataProduction[0].type }}</UBadge></li>
             </ul>
             <section class="text-wrap flex flex-col justify-center items-center gap-1">
               <h1 class="text-center text-lg">Shift 1</h1>
               <h1>PIC : <UBadge variant="soft">Juan</UBadge></h1>
             </section>
           </section>
-          <p class="text-xs mt-3">07/04/2024</p>
+          <p class="text-xs mt-3">{{ new Date().getDate() }}/0{{ new Date().getMonth() + 1 }}/{{ new Date().getFullYear() }}</p>
         </section>
       </UCard>
     </main>

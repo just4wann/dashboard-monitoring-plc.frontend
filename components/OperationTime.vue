@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { MachineInfoDataRecord } from '~/types';
+
+defineProps<{
+  data: MachineInfoDataRecord[];
+}>()
+</script>
 
 <template>
   <UCard>
@@ -10,11 +16,11 @@
             <p class="tracking-wider text-sm opacity-80">Running Production</p>
             <section class="flex justify-center items-center gap-3">
               <section class="flex justify-center items-center gap-1">
-                <UBadge variant="soft">100</UBadge>
+                <UBadge variant="soft">{{ data[0].runningTime.hour }}</UBadge>
                 <UKbd size="md">Hour</UKbd>
               </section>
               <section class="flex justify-center items-center gap-1">
-                <UBadge variant="soft">60</UBadge>
+                <UBadge variant="soft">{{ data[0].runningTime.minute }}</UBadge>
                 <UKbd size="md">Min</UKbd>
               </section>
             </section>
@@ -23,11 +29,11 @@
             <p class="tracking-wider text-sm opacity-80">Downtime Production</p>
             <section class="flex justify-center items-center gap-3">
               <section class="flex justify-center items-center gap-1">
-                <UBadge variant="soft" color="red">100</UBadge>
+                <UBadge variant="soft" color="red">{{ data[0].downTime.hour }}</UBadge>
                 <UKbd size="md">Hour</UKbd>
               </section>
               <section class="flex justify-center items-center gap-1">
-                <UBadge variant="soft" color="red">60</UBadge>
+                <UBadge variant="soft" color="red">{{ data[0].downTime.minute }}</UBadge>
                 <UKbd size="md">Min</UKbd>
               </section>
             </section>

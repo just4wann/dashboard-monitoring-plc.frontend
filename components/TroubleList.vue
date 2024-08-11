@@ -1,36 +1,22 @@
 <script setup lang="ts">
+import type { TroubleMachineDataRecord } from '~/types';
 
+defineProps<{
+    data: TroubleMachineDataRecord[]
+}>()
 </script>
 
 <template>
-  <UCard>
+  <UCard class="h-[192px]">
     <main class="flex flex-col justify-center items-center gap-3">
         <h1 class="tracking-widest">Trouble List</h1>
         <ul class="flex flex-col justify-center items-start gap-0.5 text-red-400">
-            <li class="flex justify-center items-center gap-2 text-sm tracking-wider opacity-80">
-                <p>1.</p>
-                <p>Area Sensor Trouble</p>
-                <p>-> 08.57.23</p>
+            <li v-if="data.length == 1" class="flex justify-center items-center gap-2 text-sm tracking-wider opacity-80">
+                <p>No Trouble</p>
             </li>
-            <li class="flex justify-center items-center gap-2 text-sm tracking-wider opacity-80">
-                <p>2.</p>
-                <p>Air Pressure Low Trouble</p>
-                <p>-> 08.57.23</p>
-            </li>
-            <li class="flex justify-center items-center gap-2 text-sm tracking-wider opacity-80">
-                <p>3.</p>
-                <p>Low Temperature Trouble</p>
-                <p>-> 08.57.23</p>
-            </li>
-            <li class="flex justify-center items-center gap-2 text-sm tracking-wider opacity-80">
-                <p>4.</p>
-                <p>Interlock Trouble</p>
-                <p>-> 08.57.23</p>
-            </li>
-            <li class="flex justify-center items-center gap-2 text-sm tracking-wider opacity-80">
-                <p>5.</p>
-                <p>Camera not run</p>
-                <p>-> 08.57.23</p>
+            <li v-else v-for="{name, timestamp} in data.slice(0,5)" class="flex justify-center items-center gap-2 text-sm tracking-wider opacity-80">
+                <p>{{ name }}</p>
+                <p>-> {{ timestamp }}</p>
             </li>
         </ul>
     </main>
