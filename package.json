@@ -14,16 +14,20 @@
     "@nuxt/fonts": "^0.7.1",
     "@nuxt/image": "^1.7.0",
     "@nuxt/ui": "^2.17.0",
+    "@pinia/nuxt": "^0.5.3",
     "@unovis/ts": "^1.4.2",
     "@unovis/vue": "^1.4.2",
     "date-fns": "^3.6.0",
     "img": "^3.0.3",
     "nuxt": "^3.12.2",
-    "socket.io-client": "^4.7.5",
-    "vue": "latest"
+    "pinia": "^2.2.1",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "typescript": "^5.5.2",
     "vue-tsc": "^1"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }

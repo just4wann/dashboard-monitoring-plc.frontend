@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true,
   },
-  modules: ['@nuxt/fonts', '@nuxt/ui', '@nuxt/image'],
+  modules: ['@nuxt/fonts', '@nuxt/ui', '@nuxt/image', '@pinia/nuxt'],
   css: ['~/assets/main.css'],
   compatibilityDate: '2024-07-05',
 });
