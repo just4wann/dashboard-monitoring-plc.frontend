@@ -1,79 +1,61 @@
-import type { EfficiencyDataRecord, PressureDataRecord, TemperatureDataRecord } from "~/types";
+import type { MachineInfoDataRecord, ProductionInfoDataRecord, TroubleMachineDataRecord, EfficiencyDataRecord, PressureDataRecord, TemperatureDataRecord } from "~/types";
 
-export const dataEfficiency = ref<EfficiencyDataRecord[]>([
-  { timestamp: '08.00', value: 100 },
-  { timestamp: '08.01', value: 90 },
-  { timestamp: '08.02', value: 88 },
-  { timestamp: '08.03', value: 76 },
-  { timestamp: '08.04', value: 65 },
-  { timestamp: '08.05', value: 100 },
-  { timestamp: '08.06', value: 90 },
-  { timestamp: '08.07', value: 80 },
-  { timestamp: '08.08', value: 85 },
-  { timestamp: '08.09', value: 80 },
-  { timestamp: '08.10', value: 78 },
-  { timestamp: '08.11', value: 75 },
-  { timestamp: '08.12', value: 76 },
-  { timestamp: '08.13', value: 79 },
-  { timestamp: '08.14', value: 84 },
-  { timestamp: '08.15', value: 88 },
-  { timestamp: '08.16', value: 80 },
-  { timestamp: '08.17', value: 78 },
-  { timestamp: '08.18', value: 75 },
-  { timestamp: '08.19', value: 76 },
-  { timestamp: '08.20', value: 79 },
-  { timestamp: '08.21', value: 84 },
-  { timestamp: '08.22', value: 88 },
-]);
+export const useStore = defineStore('store', () => {
+  let dataEfficiency = ref<EfficiencyDataRecord[]>([
+    {
+      value: 0,
+      timestamp: '0.0'
+    }
+  ]);
+  let dataPressure = ref<PressureDataRecord[]>([
+    {
+      airPress: 0,
+      vacuumPress: 0,
+      timestamp: '0.0'
+    }
+  ]);
+  let dataTemperature = ref<TemperatureDataRecord[]>([
+    {
+      ovenTemp: 0,
+      roomTemp: 0,
+      heaterTemp: 0,
+      timestamp: '0.0'
+    }
+  ]);
+  const dataProduction = ref<ProductionInfoDataRecord[]>([
+    {
+      type: '####',
+      ok: 0,
+      ng: 0,
+      timestamp: '0.0'
+    }
+  ]);
+  let dataTrouble = ref<TroubleMachineDataRecord[]>([
+    {
+      name: '',
+      timestamp: '0.0'
+    },
+  ]);
+  const dataMachine = ref<MachineInfoDataRecord[]>([
+    {
+      status: 'OFF',
+      mode: 'OFF',
+      runningTime: {
+        hour: '0.0',
+        minute: '0.0'
+      },
+      downTime: {
+        hour: '0.0',
+        minute: '0.0'
+      },
+      timestamp: '0.0'
+    }
+  ]);
 
-export const dataPressure = ref<PressureDataRecord[]>([
-  { timestamp: '08.00', airPress: 100, vacuumPress: 90 },
-  { timestamp: '08.01', airPress: 90, vacuumPress: 80 },
-  { timestamp: '08.02', airPress: 88, vacuumPress: 68 },
-  { timestamp: '08.03', airPress: 76, vacuumPress: 56 },
-  { timestamp: '08.04', airPress: 65, vacuumPress: 79 },
-  { timestamp: '08.05', airPress: 100, vacuumPress: 80 },
-  { timestamp: '08.06', airPress: 90, vacuumPress: 86 },
-  { timestamp: '08.07', airPress: 80, vacuumPress: 90 },
-  { timestamp: '08.08', airPress: 85, vacuumPress: 86 },
-  { timestamp: '08.09', airPress: 80, vacuumPress: 76 },
-  { timestamp: '08.10', airPress: 78, vacuumPress: 87 },
-  { timestamp: '08.11', airPress: 75, vacuumPress: 67 },
-  { timestamp: '08.12', airPress: 76, vacuumPress: 79 },
-  { timestamp: '08.13', airPress: 79, vacuumPress: 95 },
-  { timestamp: '08.14', airPress: 84, vacuumPress: 76 },
-  { timestamp: '08.15', airPress: 88, vacuumPress: 90 },
-  { timestamp: '08.16', airPress: 80, vacuumPress: 94 },
-  { timestamp: '08.17', airPress: 78, vacuumPress: 87 },
-  { timestamp: '08.18', airPress: 75, vacuumPress: 77 },
-  { timestamp: '08.19', airPress: 76, vacuumPress: 80 },
-  { timestamp: '08.20', airPress: 79, vacuumPress: 83 },
-  { timestamp: '08.21', airPress: 84, vacuumPress: 100 },
-  { timestamp: '08.22', airPress: 88, vacuumPress: 78 },
-]);
+  dataEfficiency.value = [...new Set(dataEfficiency.value)]
+  dataPressure.value = [...new Set(dataPressure.value)]
+  dataTemperature.value = [...new Set(dataTemperature.value)]
+  dataTrouble.value = [...new Set(dataTrouble.value)]
 
-export const dataTemperature = ref<TemperatureDataRecord[]>([
-  { timestamp: '08.00', ovenTemp: 100, roomTemp: 90, heaterTemp: 70 },
-  { timestamp: '08.01', ovenTemp: 90, roomTemp: 80, heaterTemp: 73 },
-  { timestamp: '08.02', ovenTemp: 88, roomTemp: 68, heaterTemp: 76 },
-  { timestamp: '08.03', ovenTemp: 76, roomTemp: 56, heaterTemp: 77 },
-  { timestamp: '08.04', ovenTemp: 65, roomTemp: 79, heaterTemp: 78 },
-  { timestamp: '08.05', ovenTemp: 100, roomTemp: 80, heaterTemp: 81 },
-  { timestamp: '08.06', ovenTemp: 90, roomTemp: 86, heaterTemp: 83 },
-  { timestamp: '08.07', ovenTemp: 80, roomTemp: 90, heaterTemp: 80 },
-  { timestamp: '08.08', ovenTemp: 85, roomTemp: 86, heaterTemp: 85 },
-  { timestamp: '08.09', ovenTemp: 80, roomTemp: 76, heaterTemp: 86 },
-  { timestamp: '08.10', ovenTemp: 78, roomTemp: 87, heaterTemp: 86 },
-  { timestamp: '08.11', ovenTemp: 75, roomTemp: 67, heaterTemp: 86 },
-  { timestamp: '08.12', ovenTemp: 76, roomTemp: 79, heaterTemp: 87 },
-  { timestamp: '08.13', ovenTemp: 79, roomTemp: 95, heaterTemp: 85 },
-  { timestamp: '08.14', ovenTemp: 84, roomTemp: 76, heaterTemp: 89 },
-  { timestamp: '08.15', ovenTemp: 88, roomTemp: 90, heaterTemp: 84 },
-  { timestamp: '08.16', ovenTemp: 80, roomTemp: 94, heaterTemp: 88 },
-  { timestamp: '08.17', ovenTemp: 78, roomTemp: 87, heaterTemp: 85 },
-  { timestamp: '08.18', ovenTemp: 75, roomTemp: 77, heaterTemp: 89 },
-  { timestamp: '08.19', ovenTemp: 76, roomTemp: 80, heaterTemp: 90 },
-  { timestamp: '08.20', ovenTemp: 79, roomTemp: 83, heaterTemp: 93 },
-  { timestamp: '08.21', ovenTemp: 84, roomTemp: 100, heaterTemp: 95 },
-  { timestamp: '08.22', ovenTemp: 88, roomTemp: 78, heaterTemp: 97 },
-]);
+  return { dataEfficiency, dataPressure, dataTemperature, dataProduction, dataTrouble, dataMachine };
+})
