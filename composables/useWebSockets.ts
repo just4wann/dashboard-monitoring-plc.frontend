@@ -3,7 +3,7 @@ import { useStore } from '~/store'
 import type { EfficiencyDataRecord, TemperatureDataRecord, PressureDataRecord, ProductionInfoDataRecord, MachineInfoDataRecord, TroubleMachineDataRecord } from '~/types'
 
 export const useWebSockets = (): Socket => {
-    const socket = io('http://localhost:80');
+    const socket = io('http://beastnice.com:5000');
     socket.on('connect', () => {
         if (socket.connected) {
             console.log('Connected to WebSocket')
