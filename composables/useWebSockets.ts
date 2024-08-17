@@ -3,15 +3,8 @@ import { useStore } from '~/store'
 import type { EfficiencyDataRecord, TemperatureDataRecord, PressureDataRecord, ProductionInfoDataRecord, MachineInfoDataRecord, TroubleMachineDataRecord } from '~/types'
 
 export const useWebSockets = (): Socket => {
-    const socket = io('http://beastnice.com:5000');
-    socket.on('connect', () => {
-        if (socket.connected) {
-            console.log('Connected to WebSocket')
-        }
-        if (socket.disconnected) {
-            console.log('Disconnected from WebSocket')
-        }
-    });
+    const socket = io('api.beastnice.com:1885');
+
     socket.on('efficiencies', (value: EfficiencyDataRecord) => {
         const store = useStore();
         store.dataEfficiency.push(value);
