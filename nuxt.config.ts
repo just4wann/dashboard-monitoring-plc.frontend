@@ -16,4 +16,7 @@ export default defineNuxtConfig({
   modules: ['@nuxt/fonts', '@nuxt/ui', '@nuxt/image', '@pinia/nuxt'],
   css: ['~/assets/main.css'],
   compatibilityDate: '2024-07-05',
+  devServer: {
+    port: 3005
+  },
 });
